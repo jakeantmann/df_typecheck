@@ -6,14 +6,21 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 
 https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when making my cookiecutter
 
+### ~~Initial setup:~~
+
 - ~~Add base code and tests in src layout~~
-- Git
-  - Install git fork
-  - Create git repo (simple readme, license)
+- ~~Git~~
+  - ~~Install git fork~~
+  - ~~Create git repo (simple readme, license)~~
   - ~~Make generic .gitignore~~
-  - Put on github
-  - Update README (badges etc - do this after tox setup)
-- Research pyproject.toml, setup.py, setup.cfg
+  - ~~Put on github~~
+
+### Packaging
+
+- Research pyproject.toml, setup.cfg, setup.py
+
+### Code quality part 1: Tox
+
 - Tox
   - pytest
     - Code coverage (need to research - coveragepy?)
@@ -22,13 +29,23 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
   - pyroma (package metadata completeness)
   - check-manifest (MANIFEST correctness)
   - mypy (optional typehint correctness)
-    - ~~Add py.typed file~~
-    - Add py.typed to setup.py/setup.cfg/pyproject.toml
-  - documentation format and build?
+  - ~~Add py.typed file~~
+  - Add py.typed to setup.py/setup.cfg/pyproject.toml
+  - documentation format and build? (see reference cookiecutter)
+
+### Code quality part 2: CI and pre-commit hooks
+
 - Github Actions (CI)
+- Pre-commit hooks
+
+### Documentation and publication
+
+- Update README (badges etc - do this after tox setup)
 - bumpversion (Version management)
 - sphinx (Documentation build)
-- Pre-commit hooks
 - PyPi
-- Make cookiecutter
+
+### Cookiecutter template
+
+- Personal package template
 
