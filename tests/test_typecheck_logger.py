@@ -2,8 +2,8 @@
 
 from contextlib import nullcontext as does_not_raise
 
+from df_typecheck.type_dict import TypeCheckException, TypeCheckLogger
 import pytest
-from type_dict import TypeCheckException, TypeCheckLogger
 
 # If warning_mode, raise error
 # If not warning_mode, return None

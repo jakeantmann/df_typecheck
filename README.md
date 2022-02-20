@@ -15,15 +15,14 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
   - ~~Make generic .gitignore~~
   - ~~Put on github~~
 
-### Packaging
+### ~~Packaging~~
 
 - ~~Turn into package using pyproject.toml and setup.cfg~~
 
 ### Code quality part 1: Tox
 
 - Tox
-  - pytest
-    - Code coverage (need to research - coveragepy?)
+  - ~~pytest~~
   - wemake (linting)
   - docstr-coverage (docstring coverage)
   - pyroma (package metadata completeness)
@@ -37,6 +36,7 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
 
 - Github Actions (CI)
 - Pre-commit hooks
+- Code coverage (need to research - coveragepy?)
 
 ### Documentation and publication
 
