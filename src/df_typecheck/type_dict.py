@@ -139,9 +139,11 @@ class TypeDict(TypeCheckLogger):
     def make_typecheck(self) -> Callable:
         """Type check decorator for a single-df transformation."""
         def decorator(func: Callable) -> Callable:
+            """Decorator for checking types."""
             def wrapper(
                 df: Optional[DataFrame] = None, *args, **kwargs,
             ) -> Callable:
+                """Wrapper for typechecking functions."""
                 if isinstance(df, DataFrame):
                     self.typechecker(df.dtypes.to_dict(), 'input')
                     output_df = func(df, *args, **kwargs)

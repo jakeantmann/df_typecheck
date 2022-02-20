@@ -24,7 +24,7 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
 - Tox
   - ~~pytest~~
   - wemake (linting)
-  - docstr-coverage (docstring coverage)
+  - ~~docstr-coverage (docstring coverage)~~
   - ~~pyroma (package metadata completeness)~~
   - check-manifest (MANIFEST correctness)
   - mypy (optional typehint correctness)
