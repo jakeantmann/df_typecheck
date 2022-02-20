@@ -17,7 +17,7 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
 
 ### Packaging
 
-- Research pyproject.toml, setup.cfg, setup.py
+- ~~Turn into package using pyproject.toml and setup.cfg~~
 
 ### Code quality part 1: Tox
 
