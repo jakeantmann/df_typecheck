@@ -10,8 +10,7 @@ from typing import (
 
 from loguru import logger
 from numpy import dtype
-import pandas as pd
-from pandas import DataFrame
+from pandas import DataFrame, Series
 
 # Set up on Git
 # ToDo: Write tests (pytest)
@@ -167,10 +166,10 @@ class DataFrameTypeDictTools(TypeDict):
         Above case should be handled by pandas.
         """
         df_series = {
-            key: pd.Series(col, dtype=self.type_dict[key])
+            key: Series(col, dtype=self.type_dict[key])
             for key, col in input_dict.items()
         }
-        return pd.DataFrame(df_series)
+        return DataFrame(df_series)
 
     def df_from_list_of_lists(self, list_of_lists, cols, transpose=False):
         """
