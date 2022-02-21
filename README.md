@@ -23,13 +23,12 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
 
 - Tox
   - ~~pytest~~
-  - wemake (linting)
+  - ~~wemake (linting)~~
   - ~~docstr-coverage (docstring coverage)~~
   - ~~pyroma (package metadata completeness)~~
   - check-manifest (MANIFEST correctness)
   - ~~mypy (optional typehint correctness)~~
   - ~~Add py.typed file~~
-  - Add py.typed to setup.py/setup.cfg/pyproject.toml
   - documentation format and build? (see reference cookiecutter)
 
 ### Code quality part 2: CI and pre-commit hooks

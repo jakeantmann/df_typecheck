@@ -2,7 +2,7 @@
 
 from contextlib import nullcontext as does_not_raise
 
-from df_typecheck.type_dict import TypeCheckException, TypeCheckLogger
+from df_typecheck.type_dict import TypeCheckError, TypeCheckLogger
 import pytest
 
 # If warning_mode, raise error
@@ -13,7 +13,7 @@ import pytest
     'warning_mode,expectation',
     [
         (True, does_not_raise()),
-        (False, pytest.raises(TypeCheckException)),
+        (False, pytest.raises(TypeCheckError)),
     ],
 )
 def test_warning_mode(warning_mode, expectation):

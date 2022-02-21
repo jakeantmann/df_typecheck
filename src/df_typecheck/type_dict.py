@@ -34,7 +34,7 @@ from pandas import DataFrame, Series
 # ToDo: Warning/error logger levels (use enum)
 
 
-class TypeCheckException(Exception):
+class TypeCheckError(Exception):
     """Custom error to catch failed type checks.
 
     Raised if columns are incorrectly typed, or are not in the type_dict.
@@ -95,7 +95,7 @@ class TypeCheckLogger(ABC):
             message = 'typecheck failed'
 
         if not self.warning_mode:
-            raise TypeCheckException(message)
+            raise TypeCheckError(message)
 
 
 class TypeDict(TypeCheckLogger):
