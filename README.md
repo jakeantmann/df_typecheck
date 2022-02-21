@@ -27,7 +27,7 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
   - ~~docstr-coverage (docstring coverage)~~
   - ~~pyroma (package metadata completeness)~~
   - check-manifest (MANIFEST correctness)
-  - mypy (optional typehint correctness)
+  - ~~mypy (optional typehint correctness)~~
   - ~~Add py.typed file~~
   - Add py.typed to setup.py/setup.cfg/pyproject.toml
   - documentation format and build? (see reference cookiecutter)
