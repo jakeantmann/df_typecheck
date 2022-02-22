@@ -2,11 +2,7 @@
 
 from abc import ABC
 from dataclasses import dataclass
-from typing import (
-    Callable,
-    Optional,
-    Union,
-)
+from typing import Callable, Optional, Union
 
 from loguru import logger
 from numpy import dtype
@@ -49,7 +45,11 @@ class TypeCheckLogger(ABC):
     warning_mode: bool = False
 
     def log_missing_cols(self, missing_cols: dict) -> None:
-        """Log missing cols."""
+        """Log missing cols.
+
+        Args:
+            missing_cols (dict): Details of missing cols.
+        """
         self.typecheck_logger('Columns with no specified type:')
         for col_name, col_type in missing_cols.items():
             self.typecheck_logger(
@@ -82,7 +82,17 @@ class TypeCheckLogger(ABC):
         incorrect_cols: dict,
         stage: Optional[str] = None,
     ) -> None:
-        """Print the output of a failed type check."""
+        """
+        Print the output of a failed type check.
+
+        Args:
+            missing_cols (dict): details of missing cols.
+            incorrect_cols (dict): details of incorrect cols.
+            stage (Optional[str], optional): Eg start or end. Defaults to None.
+
+        Raises:
+            TypeCheckError: raises if warning mode is not on.
+        """
         if missing_cols:
             self.log_missing_cols(missing_cols)
 
@@ -107,20 +117,48 @@ class TypeDict(TypeCheckLogger):
         typecheck_logger: Callable = logger.error,
         warning_mode: bool = False,
     ) -> None:
-        """Initialise TypeDict."""
+        """Initialise TypeDict.
+
+        Args:
+            type_dict (dict[str, Union[type, dtype, str]]):
+                dict of acceptable column names and types.
+            typecheck_logger (Callable):
+                Loguru logger. Defaults to logger.error.
+            warning_mode (bool):
+                Won't raise errors if True. Defaults to False.
+        """
         self.type_dict = type_dict
         super().__init__(typecheck_logger, warning_mode)
 
-    def get(self):
-        """Get the type dict."""
+    def get(self) -> dict[str, Union[type, dtype, str]]:
+        """Get the type dict.
+
+        Returns:
+            dict[str, Union[type, dtype, str]]: source type_dict.
+        """
         return self.type_dict
 
-    def type_dict_subset(self, cols):
-        """Generate subset of type dict eg for mass astype."""
+    def type_dict_subset(
+        self,
+        cols: list[str],
+    ) -> dict[str, Union[type, dtype, str]]:
+        """Generate subset of type dict eg for mass astype.
+
+        Args:
+            cols (list[str]): subset of cols of type_dict.
+
+        Returns:
+            dict[str, Union[type, dtype, str]]: type_dict with only col subset.
+        """
         return {col: self.type_dict[col] for col in cols}
 
     def typechecker(self, df_types: dict, stage: Optional[str] = None) -> None:
-        """Check a Pandas DataFrame's types match a type dictionary."""
+        """Check a Pandas DataFrame's types match a type dictionary.
+
+        Args:
+            df_types (dict): types of columns of df.
+            stage (Optional[str], optional): eg 'Input'. Defaults to None.
+        """
         missing_cols = {}
         incorrect_cols = {}
 
@@ -137,13 +175,33 @@ class TypeDict(TypeCheckLogger):
             self.log_failed_typecheck(missing_cols, incorrect_cols, stage)
 
     def make_typecheck(self) -> Callable:
-        """Type check decorator for a single-df transformation."""
+        """Type check decorator for a single-df transformation.
+
+        Returns:
+            Callable: typecheck decorator
+        """
         def decorator(func: Callable) -> Callable:
-            """Decorator for checking types."""
+            """Decorate a dataframe to check its types.
+
+            Args:
+                func (Callable): Input function for decorator
+
+            Returns:
+                Callable: A decorator
+            """
             def wrapper(
                 df: Optional[DataFrame] = None, *args, **kwargs,
             ) -> Callable:
-                """Wrapper for typechecking functions."""
+                """Wrap typechecking functions for a decorator.
+
+                Args:
+                    df (DataFrame, optional): Input DataFrame. Defaults to None
+                    args: arbitrary args.
+                    kwargs: arbitrary keyword args.
+
+                Returns:
+                    Callable: Wrapper for decorated function.
+                """
                 if isinstance(df, DataFrame):
                     self.typechecker(df.dtypes.to_dict(), 'input')
                     output_df = func(df, *args, **kwargs)
@@ -158,14 +216,22 @@ class TypeDict(TypeCheckLogger):
 class DataFrameTypeDictTools(TypeDict):
     """Helps build and handle types in dataframes."""
 
-    def df_from_dict(self, input_dict):
-        """
-        Create type strict df from input dict.
+    def df_from_dict(
+        self,
+        input_dict: dict[str, list],
+    ) -> DataFrame:
+        """Create type strict df from input dict.
 
         ToDo: Handle case when col is not in type dict.
         ToDo: Handle case when not same number of cols as col names.
         ToDo: Handle case when dicts have different list lengths?
         Above case should be handled by pandas.
+
+        Args:
+            input_dict (dict[str]): Source data.
+
+        Returns:
+            DataFrame: DataFrame derived from source data.
         """
         df_series = {
             key: Series(col, dtype=self.type_dict[key])
@@ -173,11 +239,23 @@ class DataFrameTypeDictTools(TypeDict):
         }
         return DataFrame(df_series)
 
-    def df_from_list_of_lists(self, list_of_lists, cols, transpose=False):
-        """
-        Create df from list of lists.
+    def df_from_list_of_lists(
+        self,
+        list_of_lists: list[list],
+        cols: list[str],
+        transpose: bool = False,
+    ) -> DataFrame:
+        """Create df from list of lists.
 
         ToDo: handle case when input isn't rectangular.
+
+        Args:
+            list_of_lists (list[list]): Source data.
+            cols (list[str]): Column names.
+            transpose (bool): Transpose the data. Defaults to False.
+
+        Returns:
+            DataFrame: Derived from list of lists.
         """
         if transpose:
             list_of_lists = list(map(list, zip(*list_of_lists)))
@@ -185,10 +263,15 @@ class DataFrameTypeDictTools(TypeDict):
         input_dict = dict(zip(cols, list_of_lists))
         return self.df_from_dict(input_dict)
 
-    def mass_astype(self, df):
-        """
-        Mass astype using type_dict.
+    def mass_astype(self, df: DataFrame) -> DataFrame:
+        """Apply asytpe en masse using type_dict.
 
         ToDo: Consider KeyError.
+
+        Args:
+            df (DataFrame): A Pandas DataFrame
+
+        Returns:
+            DataFrame: The original DataFrame with updated types.
         """
         return df.astype(self.type_dict_subset(df.columns))

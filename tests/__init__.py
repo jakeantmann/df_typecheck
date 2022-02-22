@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-"""Tests for :mod:`df_typecheck`."""
+"""Tests for df_typecheck."""
