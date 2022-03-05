@@ -2,6 +2,8 @@
 
 Typechecks for pandas dataframe columns using a single, central type dictionary
 
+![Tests](https://github.com/jakeantmann/df_typecheck/actions/workflows/tests.yml/badge.svg)
+
 ## ToDo:
 
 https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when making my cookiecutter
@@ -26,25 +28,35 @@ https://github.com/cthoyt/cookiecutter-snekpack is inspiration. Might fork when 
   - ~~wemake (linting)~~
   - ~~docstr-coverage (docstring coverage)~~
   - ~~pyroma (package metadata completeness)~~
-  - check-manifest (MANIFEST correctness)
   - ~~mypy (optional typehint correctness)~~
   - ~~Add py.typed file~~
+  - Move metadata to pyproject.toml
+  - Fix nitpick issues
   - documentation format and build? (see reference cookiecutter)
 
 ### Code quality part 2: CI and pre-commit hooks
 
-- Github Actions (CI)
+- ~~Simple Github Actions (CI)~~
 - Pre-commit hooks
 - Code coverage (need to research - coveragepy?)
 
-### Documentation and publication
+### README
 
-- Update README (badges etc - do this after tox setup)
-- bumpversion (Version management)
-- sphinx (Documentation build)
-- PyPi
+- Add some relevant badges
+  - Split tox_gh_actions tests into several kinds of tests (eg pyroma, lint, tests etc.)
+  - Add badges to readme
+- Update readme 
+  - 
 
 ### Cookiecutter template
 
 - Personal package template
 
+### Extra stuff
+
+- bumpversion (Version management)
+- sphinx (Documentation build)
+- PyPi
+- Contributing.md
+- Code of conduct
+- Readme for cookiecutter
