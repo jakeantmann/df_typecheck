@@ -50,10 +50,10 @@ class TypeCheckLogger(ABC):
         Args:
             missing_cols (dict): Details of missing cols.
         """
-        self.typecheck_logger('Columns with no specified type:')
+        self.typecheck_logger("Columns with no specified type:")
         for col_name, col_type in missing_cols.items():
             self.typecheck_logger(
-                '\t{col_name}: {col_type}'.format(
+                "\t{col_name}: {col_type}".format(
                     col_name=col_name, col_type=col_type,
                 ),
             )
@@ -66,13 +66,13 @@ class TypeCheckLogger(ABC):
                 keys: string
                 values: dict[type_of_df:class, correct_type:class]
         """
-        self.typecheck_logger('Columns with incorrect types:')
+        self.typecheck_logger("Columns with incorrect types:")
         for col_name, row in incorrect_cols.items():
-            log_string = '{col_name} is {col_type}, should be {correct_type}'
+            log_string = "{col_name} is {col_type}, should be {correct_type}"
             log_string = log_string.format(
                 col_name=col_name,
-                col_type=row['type_in_df'],
-                correct_type=row['correct_type'],
+                col_type=row["type_in_df"],
+                correct_type=row["correct_type"],
             )
             self.typecheck_logger(log_string)
 
@@ -100,9 +100,9 @@ class TypeCheckLogger(ABC):
             self.log_incorrect_cols(incorrect_cols)
 
         if stage is not None:
-            message = 'typecheck failed at stage: {stage}'.format(stage=stage)
+            message = "typecheck failed at stage: {stage}".format(stage=stage)
         else:
-            message = 'typecheck failed'
+            message = "typecheck failed"
 
         if not self.warning_mode:
             raise TypeCheckError(message)
@@ -168,8 +168,8 @@ class TypeDict(TypeCheckLogger):
                 continue
             if col_type != self.type_dict[col]:
                 incorrect_cols[col] = {
-                    'type_in_df': col_type,
-                    'correct_type': self.type_dict[col],
+                    "type_in_df": col_type,
+                    "correct_type": self.type_dict[col],
                 }
         if missing_cols or incorrect_cols:
             self.log_failed_typecheck(missing_cols, incorrect_cols, stage)
@@ -203,11 +203,11 @@ class TypeDict(TypeCheckLogger):
                     Callable: Wrapper for decorated function.
                 """
                 if isinstance(df, DataFrame):
-                    self.typechecker(df.dtypes.to_dict(), 'input')
+                    self.typechecker(df.dtypes.to_dict(), "input")
                     output_df = func(df, *args, **kwargs)
                 else:
                     output_df = func(*args, **kwargs)
-                self.typechecker(output_df.dtypes, 'output')
+                self.typechecker(output_df.dtypes, "output")
                 return output_df
             return wrapper
         return decorator

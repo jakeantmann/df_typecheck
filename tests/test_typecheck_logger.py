@@ -12,7 +12,7 @@ from df_typecheck.type_dict import TypeCheckError, TypeCheckLogger
 
 
 @pytest.mark.parametrize(
-    'warning_mode,expectation',
+    "warning_mode,expectation",
     [
         (True, does_not_raise()),
         (False, pytest.raises(TypeCheckError)),
@@ -29,11 +29,11 @@ def test_warning_mode(warning_mode: bool, expectation: Any):
 
     with expectation:
         typecheck_logger.log_failed_typecheck(
-            {'a': str},
+            {"a": str},
             {
-                'c': {
-                    'type_in_df': str,
-                    'correct_type': int,
+                "c": {
+                    "type_in_df": str,
+                    "correct_type": int,
                 },
             },
         )
