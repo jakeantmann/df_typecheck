@@ -1,3 +1,64 @@
+## Metadata etc not included until linting tools catch up
+# [project]
+# name = "df_typecheck"
+# version = "0.1.0"
+# description = "Typechecks for pandas dataframe columns using a single, central type dictionary"
+# readme = "README.md"
+# requires-python = ">=3.9"
+
+# # License Information
+# license = {file = "LICENSE.txt"}
+
+# authors = [
+#     {name = "Jake Antmann", email = "jakeantmann@gmail.com"}
+# ]
+# maintainers = [
+#     {name = "Jake Antmann", email = "jakeantmann@gmail.com"}
+# ]
+# # Search tags
+# # TODO add your topics from the Trove controlled vocabulary (see https://pypi.org/classifiers)
+# classifiers = [
+#     "Development Status :: 1 - Planning",
+#     "Environment :: Console",
+#     "Intended Audience :: Developers",
+#     "License :: OSI Approved :: MIT License",
+#     "Operating System :: OS Independent",
+#     "Framework :: Pytest",
+#     "Framework :: tox",
+#     "Framework :: Sphinx",
+#     "Programming Language :: Python",
+#     "Programming Language :: Python :: 3.9",
+#     "Programming Language :: Python :: 3.10",
+#     "Programming Language :: Python :: 3 :: Only",
+# ]
+
+# dependencies = [
+#     "pandas=1.3.2",
+#     "numpy=1.21.2",
+#     "loguru=0.5.3",
+# ]
+
+# # TODO add your own free-text keywords
+# keywords = [
+#     "cookiecutter",
+#     "QA",
+# ]
+
+# # Borrowed from https://github.com/pawamoy/git-changelog/blob/master/pyproject.toml
+# [project.urls]
+# homepage = "https://github.com/jakeantmann/df_typecheck"
+# repository = "https://github.com//jakeantmann/df_typecheck"
+# releases = "https://github.com//jakeantmann/df_typecheck/releases"
+# # documentation = "https://df_typecheck.readthedocs.io/en/0.1.0"
+# # documentation = "https://jakeantmann.github.io/df_typecheck"
+# # changelog = "https://pawamoy.github.io/git-changelog/changelog" # See https://keepachangelog.com/en/1.0.0/ for info on this
+# issues = "https://github.com/jakeantmann/df_typecheck/issues"
+# discussions = "https://github.com/jakeantmann/df_typecheck/discussions"
+# # gitter = "https://gitter.im/df_typecheck/community"
+# # funding = "https://github.com/sponsors/jakeantmann"
+
+# dynamic = ["version", "classifiers"]
+
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"

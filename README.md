@@ -69,18 +69,30 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
 - bumpversion (Version management)
 - Documentation
   - sphinx
+  - mkdocs
   - readTheDocs
   - Add to tox
   - Add documentation status badge [![https://readthedocs.org/projects/df_typecheck/badge/?version=latest](https://df_typecheck.readthedocs.io/en/latest/?badge=latest)](Documentation Status - readthedocs)
 - click (cmd line tool builder) (including badge?)
 - PyPi (automatically push latest code to PyPi, a standard Python public code library)
 - BitBucket Pipeline integration
+- More tools for testing
+  - pytest-cov
+  - pytest-randomly
+  - pytest-sugar
+  - pytest-xdist
+- ![Dependency pinning](https://hynek.me/articles/python-app-deps-2018/), requires more research
 
 ### Explanatory files to consider -  either make or copy
 
+- Changelog (![background reading](https://keepachangelog.com/en/1.0.0/), ![potential tool](https://github.com/pawamoy/git-changelog))
 - Contributing.md (See contributor covenant badge)
 - Code of conduct
 - Readme for cookiecutter
+
+### Updates to pyproject.toml
+
+- project.dynamic, as seen ![here](https://github.com/pawamoy/git-changelog/blob/master/pyproject.toml)
 
 ### More linting tools
 
