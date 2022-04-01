@@ -31,15 +31,16 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
   - ~~mypy (optional typehint correctness)~~
   - ~~Add py.typed file~~
   - ~~Fix nitpick issues~~
-  - Move metadata to pyproject.toml
+  - ~~Move metadata to pyproject.toml~~ (only done in commented out version, waiting for pyroma updates)
 
-### Code quality part 2: CI and pre-commit hooks
+### Code quality part 2: CI, pre-commit hooks, changelogs
 
 - ~~Simple Github Actions (CI)~~
 - Pre-commit hooks
   - Find relevant pre-commit hooks not covered well using tox
   - Implement these
 - Code coverage (need to research - coveragepy?)
+- Changelog (![background reading](https://keepachangelog.com/en/1.0.0/), ![potential tool](https://github.com/pawamoy/git-changelog))
 
 ### README
 
@@ -62,7 +63,7 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
 
 ### Cookiecutter template
 
-- Personal package template
+- ~~Personal package template~~ (keep updating)
 
 ### General tools to include
 
@@ -85,7 +86,6 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
 
 ### Explanatory files to consider -  either make or copy
 
-- Changelog (![background reading](https://keepachangelog.com/en/1.0.0/), ![potential tool](https://github.com/pawamoy/git-changelog))
 - Contributing.md (See contributor covenant badge)
 - Code of conduct
 - Readme for cookiecutter
