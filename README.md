@@ -21,9 +21,9 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 
 - ~~Turn into package using pyproject.toml and setup.cfg~~
 
-### Code quality part 1: Tox
+### ~~Code quality part 1: Tox~~
 
-- Tox
+- ~~Tox~~
   - ~~pytest~~
   - ~~wemake (linting)~~
   - ~~docstr-coverage (docstring coverage)~~
@@ -37,10 +37,12 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 
 - ~~Simple Github Actions (CI)~~
 - Pre-commit hooks
+  - ~~Initial pre-commit setup~~
   - Find relevant pre-commit hooks not covered well using tox
   - Implement these
 - Code coverage (need to research - coveragepy?)
-- Changelog (![background reading](https://keepachangelog.com/en/1.0.0/), ![potential tool](https://github.com/pawamoy/git-changelog))
+- Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))
+- Changelog ([Conventional changelogs](https://github.com/conventional-changelog/conventional-changelog))
 
 ### README
 
@@ -57,7 +59,6 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
     - Tests
     - Docs
   - Cookiecutter template example badge [![Cookiecutter template from @cthoyt](https://github.com/cthoyt/cookiecutter-python-package)](https://img.shields.io/badge/Cookiecutter-snekpack-blue), make my own
-
 - Organise badges
 - What else goes in a standard readme? Research this
 
