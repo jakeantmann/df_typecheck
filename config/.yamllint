@@ -1,0 +1,8 @@
+---
+# Custom config file for yamllint
+
+extends: default
+
+rules:
+  comments: disable
+  comments-indentation: disable

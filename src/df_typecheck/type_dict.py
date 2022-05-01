@@ -1,8 +1,8 @@
 """Ensure the types of a pandas DataFrame are correct."""
-
 from abc import ABC
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable, Optional, Union
+from typing import Optional, Union
 
 from loguru import logger
 from numpy import dtype

@@ -1,3 +1,4 @@
+---
 plugins:
   bandit:
     enabled: true

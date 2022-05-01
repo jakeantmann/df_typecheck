@@ -38,8 +38,8 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 - ~~Simple Github Actions (CI)~~
 - Pre-commit hooks
   - ~~Initial pre-commit setup~~
-  - Find relevant pre-commit hooks not covered well using tox
-  - Implement these
+  - ~~Find relevant pre-commit hooks not covered well using tox~~
+  - Implement each group in hooks file (excluding those that need research)
 - Code coverage (need to research - coveragepy?)
 - Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))
 - Changelog ([Conventional changelogs](https://github.com/conventional-changelog/conventional-changelog))
@@ -54,6 +54,7 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
   - PyPi python versions [![PyPI - Python Version](https://pypi.org/project/df_typecheck)](https://img.shields.io/pypi/pyversions/df_typecheck)
   - codestyle: wemake
     [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
+  - [https://pre-commit.com/#badging-your-repository](pre-commit)
   - Code coverage [![https://codecov.io/gh//jakeantmann/df_typecheck/branch/main/graph/badge.svg](https://codecov.io/gh//jakeantmann/df_typecheck/branch/main)](Codecov status)
   - Split tox_gh_actions tests into several kinds of tests
     - Tests

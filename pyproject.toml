@@ -63,15 +63,15 @@
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.nitpick]
+style = "https://raw.githubusercontent.com/wemake-services/wemake-python-styleguide/master/styles/nitpick-style.toml"
+
 [tool.poetry.dependencies]
 python = "^3.9"
-
-[tool.poetry.extras]
-lint = [ "pylint",]
 
 [tool.poetry.dependencies.pylint]
 version = "*"
 optional = true
 
-[tool.nitpick]
-style = "https://raw.githubusercontent.com/wemake-services/wemake-python-styleguide/master/styles/nitpick-style.toml"
+[tool.poetry.extras]
+lint = [ "pylint",]

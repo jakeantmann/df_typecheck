@@ -1,7 +1,292 @@
+---
+# Git checks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-merge-conflict
+        name: 'Git checks: Check for files that contain merge conflict strings'
+        args: [--assume-in-merge]
+      - id: check-symlinks
+        name: 'Git checks: Check for symlinks which do not point to anything'
+      - id: check-vcs-permalinks
+        name: 'Git checks: Ensures that links to vcs websites are permalinks'
+      - id: destroyed-symlinks
+        name: 'Git checks: Detect destroyed symlinks'
+  # - repo: https://github.com/jumanjihouse/pre-commit-hooks
+  #   rev: 2.1.6
+  #   hooks:
+  #     - id: git-check # Configure in .gitattributes
+  #       name: 'Git checks: Check for git conflict markers'
+  #     - id: git-dirty # Configure in .gitignore
+  #       name: 'Git checks: Check git tree for modified/staged/untracked files'
+  #     - id: protect-first-parent
+  #       name: 'Git checks: Protect first parent'
+  # Commit linter
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.17.0
+    hooks:
+      - id: gitlint
+        name: 'Git checks: Commit linter (conventional commit format)'
+        args: [--contrib=CT1]
+
+    ## Generic checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-added-large-files
+        name: 'Generic checks: Check for large files'
+  - repo: https://github.com/PrincetonUniversity/blocklint
+    rev: v0.2.3
+    hooks:
+      - id: blocklint
+        name: 'Generic checks: finds non-inclusive wording'
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.9.0
+    hooks:
+      - id: text-unicode-replacement-char
+        name: 'Generic checks: Forbid files with UTF-8 replacement character'
+  - repo: https://github.com/sirosen/texthooks
+    rev: 0.3.0
+    hooks:
+      - id: forbid-bidi-controls
+        name: 'Generic fixes: Forbid unicode bidirectional control characters'
+
+    ## Generic fixes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: end-of-file-fixer
+        name: 'Generic fixes: Fix mismatched end-of-line markers'
+      - id: fix-byte-order-marker
+        name: 'Generic fixes: Files should end with 1 newline'
+      - id: mixed-line-ending
+        name: 'Generic fixes: Fixes mixed line ending'
+      - id: trailing-whitespace
+        name: 'Generic fixes: Trims trailing whitespace'
+  - repo: https://github.com/sirosen/texthooks
+    rev: 0.3.0
+    hooks:
+      - id: fix-smartquotes
+        name: 'Generic fixes: Fix smartquotes (non-ASCII quotes)'
+      - id: fix-ligatures
+        name: 'Generic fixes: Fix ligatures (non-ASCII joined letters)'
+
+    ## Python-specific tools
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-ast # Check python syntax
+        name: 'Python: Check python syntax'
+      - id: debug-statements
+        name: 'Python: Check for breakpoint() calls'
+      - id: check-docstring-first
+        name: 'Python: Check docstring position'
+      - id: name-tests-test
+        name: 'Python: Check that tests are named correctly'
+        args: [--django]
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.9.0
+    hooks:
+      - id: python-check-blanket-noqa
+        name: 'Python: Check noqas always have specific codes'
+      - id: python-check-blanket-type-ignore
+        name: 'Python: Check type ignore always has specific codes'
+      - id: python-check-mock-methods
+        name: 'Python: Prevent certain mock method mistakes'
+      - id: python-no-log-warn
+        name: 'Python: Check for deprecated .warn() logger call'
+      - id: python-use-type-annotations
+        name: 'Python: Check for pre-v3.6 type comments'
+  - repo: https://github.com/sondrelg/pep585-upgrade
+    rev: v1.0.1
+    hooks:
+      - id: upgrade-type-hints
+        name: 'Python: Upgrade type hints to native types (PEP585)'
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.2.3
+    hooks:
+      - id: add-trailing-comma
+        name: 'Python: Add trailing commas'
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.3.0
+    hooks:
+      - id: yesqa
+        name: 'Python: Remove unnecessary noqa comments'
+  # - repo: https://github.com/jazzband/pip-tools # TODO set up, add pip-sync?
+  #   rev: 6.3.0
+  #   hooks:
+  #     - id: pip-compile
+  #       name: 'Python: pin package dependencies'
+  #       args: [--output-file=setup.cfg]
+  # # TODO tox didn't run, will try again when hooks are installed
+  # - repo: https://github.com/tox-dev/tox-ini-fmt
+  #   rev: "0.3.0"
+  #   hooks:
+  #     - id: tox-ini-fmt
+  #       name: 'Python: format tox.ini # TODO add .ini formatter'
+  #       args: ["-p", "fix_lint,type"]
+  # # TODO Removes comments. Unclear how they'd fix this. Will look into
+  # - repo: https://github.com/asottile/setup-cfg-fmt
+  #   rev: v1.20.1
+  #   hooks:
+  #     - id: setup-cfg-fmt
+  #       name: 'Python: Format setup.cfg'
+  # Config linters/validators
+  - repo: https://github.com/PeterMosmans/jenkinslint
+    rev: v1.0.0
+    hooks:
+      - id: jenkinslint
+        name: 'CI config linter: Jenkins'
+  - repo: https://github.com/AleksaC/circleci-cli-py
+    rev: v0.1.17183
+    hooks:
+      - id: circle-ci-validator
+        name: 'CI config linter: CircleCI'
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.14.3
+    hooks:
+      - id: check-azure-pipelines
+        name: 'CI config linter: Azure Pipelines'
+      - id: check-bamboo-spec
+        name: 'CI config linter: Bamboo'
+      - id: check-github-actions
+        name: 'CI config linter: Github Actions'
+      - id: check-github-workflows
+        name: 'CI config linter: Github Workflows'
+      - id: check-renovate
+        name: 'CI config linter: Renovate'
+        additional_dependencies: [pyjson5] # Only need this for renovate
+      - id: check-travis
+        name: 'CI config linter: TravisCI'
+      - id: check-readthedocs # Python documentation linter
+        name: 'Linter: ReadTheDocs'
+  # # Might be broken by git security update
+  # - repo: git://github.com/jstewmon/check-swagger
+  #   rev: v0.1.4
+  #   hooks:
+  #     - id: check-swagger
+  #       name: 'Linter: Swagger yaml'
+  # Infrastructure-as-code linter
+  - repo: https://github.com/aws-cloudformation/cfn-python-lint
+    rev: v0.59.0
+    hooks:
+      - id: cfn-python-lint
+        name: 'Linter: AWS CloudFormation (IAC) config linter'
+        files: path/to/cfn/dir/.*\.(json|yml|yaml)$
+  # Docker linters
+  - repo: https://github.com/AleksaC/hadolint-py
+    rev: v1.19.0
+    hooks:
+      - id: hadolint
+        name: 'Linter: Dockerfile'
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.1.0
+    hooks:
+      - id: docker-compose-check
+        name: 'Linter: docker-compose'
+
+    ## Markup file linters
+    # RST
+  - repo: https://github.com/myint/rstcheck
+    rev: v5.0.0
+    hooks:
+      - id: rstcheck
+        name: 'Markup: RST linter'
+    # Markdown
+  - repo: https://github.com/jackdewinter/pymarkdown
+    rev: v0.9.6
+    hooks:
+      - id: pymarkdown
+        name: 'Markup: Markdown linter'
+        args: [--disable-rules, line-length, scan]
+  - repo: https://github.com/frnmst/md-toc
+    rev: 8.1.3
+    hooks:
+      - id: md-toc
+        name: 'Markup: Add markdown table of contents'
+        args: [-p, github]
+
+    ## Data/serialisation format checks
+    # TOML
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-toml
+        name: 'Data serialisation: TOML linter'
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
     rev: v2.3.0
     hooks:
-      - id: check-yaml
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
+      - id: pretty-format-toml
+        name: 'Data serialisation: TOML formatter'
+        args: [--autofix]
+    # YAML
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.3
+    hooks:
+      - id: yamllint
+        name: 'Data serialisation: YAML linter'
+        args: [-f=parsable, --strict, -c=config/.yamllint]
+  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+    rev: 0.1.1 # or specific tag
+    hooks:
+      - id: yamlfmt
+        name: 'Data serialisation: YAML formatter'
+        args: [--mapping=2, --sequence=4, --offset=2, --width=150]
+    # JSON
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-json
+        name: 'Data serialisation: JSON linter'
+      - id: pretty-format-json
+        name: 'Data serialisation: JSON formatter'
+    # XML
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-xml
+        name: 'Data serialisation: XML linter'
+    # SQL
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 0.13.0
+    hooks:
+      - id: sqlfluff-lint
+        name: 'Data serialisation: SQL linter'
+      - id: sqlfluff-fix
+        name: 'Data serialisation: SQL formatter'
+    ## Security checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: detect-private-key
+        name: 'Security: Detect private keys'
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.2.0
+    hooks:
+      - id: detect-secrets
+        exclude: package.lock.json
+        name: 'Security: Detect secrets (Yelp)'
+  - repo: https://github.com/twu/skjold
+    rev: v0.4.1
+    hooks:
+      - id: skjold # Detect security issues in python project dependencies
+        name: 'Security: detect security issues in python project dependencies'
+        # verbose: true # Without this, no output returned by pre-commit
+    # Need to use poetry for this to work
+    # - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    #   rev: v1.2.4
+    #   hooks:
+    #     - id: python-safety-dependencies-check
+
+    ## Shell tools
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.8.0.4
+    hooks:
+      - id: shellcheck # Lint shell code
+        name: 'Shell tools: linter'
+  - repo: https://github.com/maxwinterstein/shfmt-py
+    rev: v3.4.3.1
+    hooks:
+      - id: shfmt # Fix shell lints
+        name: 'Shell tools: formatter'
