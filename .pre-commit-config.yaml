@@ -1,4 +1,8 @@
 ---
+## This contains all the hooks I can find that are useful and python/shell based
+## Lots of hooks - it is the cloakroom
+## TODO give it a repo
+
 # Git checks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -119,13 +123,12 @@ repos:
   #     - id: pip-compile
   #       name: 'Python: pin package dependencies'
   #       args: [--output-file=setup.cfg]
-  # # TODO tox didn't run, will try again when hooks are installed
-  # - repo: https://github.com/tox-dev/tox-ini-fmt
-  #   rev: "0.3.0"
-  #   hooks:
-  #     - id: tox-ini-fmt
-  #       name: 'Python: format tox.ini # TODO add .ini formatter'
-  #       args: ["-p", "fix_lint,type"]
+  # TODO tox didn't run, will try again when hooks are installed
+  - repo: https://github.com/tox-dev/tox-ini-fmt
+    rev: 0.3.0
+    hooks:
+      - id: tox-ini-fmt
+        name: 'Python: format tox.ini' # TODO add .ini formatter
   # # TODO Removes comments. Unclear how they'd fix this. Will look into
   # - repo: https://github.com/asottile/setup-cfg-fmt
   #   rev: v1.20.1
