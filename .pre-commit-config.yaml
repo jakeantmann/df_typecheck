@@ -123,7 +123,6 @@ repos:
   #     - id: pip-compile
   #       name: 'Python: pin package dependencies'
   #       args: [--output-file=setup.cfg]
-  # TODO tox didn't run, will try again when hooks are installed
   - repo: https://github.com/tox-dev/tox-ini-fmt
     rev: 0.3.0
     hooks:

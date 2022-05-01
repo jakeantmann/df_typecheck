@@ -39,10 +39,12 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 - Pre-commit hooks
   - ~~Initial pre-commit setup~~
   - ~~Find relevant pre-commit hooks not covered well using tox~~
-  - Implement each group in hooks file (excluding those that need research)
+  - ~~Implement each group in hooks file (excluding those that need research)~~
+    - Address git-check/git-dirty/protect-first-parent - should this be post-commit or something?
 - Code coverage (need to research - coveragepy?)
 - Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))
 - Changelog ([Conventional changelogs](https://github.com/conventional-changelog/conventional-changelog))
+- Implement dependency pinning using pip-compile/pip-sync
 
 ### README
 
@@ -107,3 +109,4 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
 - ![Cohesion](https://github.com/mschwager/cohesion) Checks class cohesion. Use as a reporting tool
 - ![bellybutton](https://github.com/hchasestevens/bellybutton) custom, project-specific linting using regex or ast
 - ![vulture](https://github.com/jendrikseipp/vulture) finds unused code
+- ![Poetry](https://python-poetry.org/) Alternate python dependency management system
