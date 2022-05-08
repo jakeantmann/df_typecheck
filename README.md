@@ -4,6 +4,12 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 
 ![Tests](https://github.com/jakeantmann/df_typecheck/actions/workflows/tests.yml/badge.svg)
 
+## Initialise dev
+
+- Clone repo
+- Run `source ./config/dev-init.sh` from within the root repo directory. This updates pip, installs all required packages (including those required for dev), and installs pre-commit.
+  - Note: Some pre-commit hooks are shell scripts, so use linux when developing this package.
+
 ## ToDo
 
 ![cookiecutter-snekpack](https://github.com/cthoyt/cookiecutter-snekpack) is inspiration. Might fork when making my cookiecutter
@@ -36,13 +42,15 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
 ### Code quality part 2: CI, pre-commit hooks, changelogs
 
 - ~~Simple Github Actions (CI)~~
-- Pre-commit hooks
+- ~~Pre-commit hooks~~
   - ~~Initial pre-commit setup~~
   - ~~Find relevant pre-commit hooks not covered well using tox~~
   - ~~Implement each group in hooks file (excluding those that need research)~~
-    - Address git-check/git-dirty/protect-first-parent - should this be post-commit or something?
+  - ~~Add pre-commit setup sh/bat files~~
+  - Add pre-commit to github actions (need to cache, and report when need to recache (new hook/possibly hook removed))
 - Code coverage (need to research - coveragepy?)
-- Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))
+- ~~Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))~~
+  - Currently no automatic linting of commit in WSL
 - Changelog ([Conventional changelogs](https://github.com/conventional-changelog/conventional-changelog))
 - Implement dependency pinning using pip-compile/pip-sync
 
@@ -71,6 +79,7 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
 
 ### General tools to include
 
+- ~~vscode project settings~~
 - bumpversion (Version management)
 - Documentation
   - sphinx

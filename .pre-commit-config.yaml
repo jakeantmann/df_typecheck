@@ -3,7 +3,7 @@
 ## Lots of hooks - it is the cloakroom
 ## TODO give it a repo
 
-# Git checks
+default_stages: [commit, merge-commit, push]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
@@ -17,22 +17,22 @@ repos:
         name: 'Git checks: Ensures that links to vcs websites are permalinks'
       - id: destroyed-symlinks
         name: 'Git checks: Detect destroyed symlinks'
-  # - repo: https://github.com/jumanjihouse/pre-commit-hooks
-  #   rev: 2.1.6
-  #   hooks:
-  #     - id: git-check # Configure in .gitattributes
-  #       name: 'Git checks: Check for git conflict markers'
-  #     - id: git-dirty # Configure in .gitignore
-  #       name: 'Git checks: Check git tree for modified/staged/untracked files'
-  #     - id: protect-first-parent
-  #       name: 'Git checks: Protect first parent'
-  # Commit linter
-  - repo: https://github.com/jorisroovers/gitlint
-    rev: v0.17.0
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.6
     hooks:
-      - id: gitlint
-        name: 'Git checks: Commit linter (conventional commit format)'
-        args: [--contrib=CT1]
+      - id: git-dirty # Configure in .gitignore
+        name: 'Git checks: Check git tree for modified/staged/untracked files'
+        stages: [post-commit, post-merge]
+      - id: protect-first-parent
+        name: 'Git checks: Protect first parent'
+  ## Commit linter - currently bugs out in WSL
+  # - repo: https://github.com/jorisroovers/gitlint
+  #   rev: v0.17.0
+  #   hooks:
+  #     - id: gitlint
+  #       name: 'Git checks: Commit linter (conventional commit format)'
+  #       args: [--contrib=CT1]
+  #       stages: [commit-msg]
 
     ## Generic checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -66,6 +66,7 @@ repos:
         name: 'Generic fixes: Files should end with 1 newline'
       - id: mixed-line-ending
         name: 'Generic fixes: Fixes mixed line ending'
+        args: [--fix=lf]
       - id: trailing-whitespace
         name: 'Generic fixes: Trims trailing whitespace'
   - repo: https://github.com/sirosen/texthooks
@@ -77,6 +78,11 @@ repos:
         name: 'Generic fixes: Fix ligatures (non-ASCII joined letters)'
 
     ## Python-specific tools
+  - repo: https://github.com/regebro/pyroma
+    rev: '3.2'
+    hooks:
+      - id: pyroma
+        name: 'Python: Check package metadata with Pyroma'
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
@@ -117,6 +123,19 @@ repos:
     hooks:
       - id: yesqa
         name: 'Python: Remove unnecessary noqa comments'
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        name: 'Python: Flake8 lint (wemake python styleguide)'
+        additional_dependencies: [flake8-colors, wemake-python-styleguide]
+        args: [src/, tests/]
+  - repo: https://github.com/HunterMcGushion/docstr_coverage
+    rev: v2.2.0
+    hooks:
+      - id: docstr-coverage
+        name: 'Python: Docstring coverage'
+        args: [src/, tests/, --skip-private, --skip-magic]
   # - repo: https://github.com/jazzband/pip-tools # TODO set up, add pip-sync?
   #   rev: 6.3.0
   #   hooks:
@@ -134,6 +153,7 @@ repos:
   #   hooks:
   #     - id: setup-cfg-fmt
   #       name: 'Python: Format setup.cfg'
+
   # Config linters/validators
   - repo: https://github.com/PeterMosmans/jenkinslint
     rev: v1.0.0
@@ -243,6 +263,7 @@ repos:
         name: 'Data serialisation: JSON linter'
       - id: pretty-format-json
         name: 'Data serialisation: JSON formatter'
+        args: [--autofix]
     # XML
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
@@ -287,6 +308,7 @@ repos:
     hooks:
       - id: shellcheck # Lint shell code
         name: 'Shell tools: linter'
+        args: [-x]
   - repo: https://github.com/maxwinterstein/shfmt-py
     rev: v3.4.3.1
     hooks:

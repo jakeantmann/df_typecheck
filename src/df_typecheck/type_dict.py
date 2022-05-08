@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """Ensure the types of a pandas DataFrame are correct."""
 from abc import ABC
 from collections.abc import Callable
