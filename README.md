@@ -50,8 +50,8 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
   - Add pre-commit to github actions (need to cache, and report when need to recache (new hook/possibly hook removed))
 - Code coverage (need to research - coveragepy?)
 - ~~Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))~~
-  - Currently no automatic linting of commit in WSL
 - Changelog ([Conventional changelogs](https://github.com/conventional-changelog/conventional-changelog))
+  - How fix old commit messages?
 - Implement dependency pinning using pip-compile/pip-sync
 
 ### README

@@ -25,14 +25,14 @@ repos:
         stages: [post-commit, post-merge]
       - id: protect-first-parent
         name: 'Git checks: Protect first parent'
-  ## Commit linter - currently bugs out in WSL
-  # - repo: https://github.com/jorisroovers/gitlint
-  #   rev: v0.17.0
-  #   hooks:
-  #     - id: gitlint
-  #       name: 'Git checks: Commit linter (conventional commit format)'
-  #       args: [--contrib=CT1]
-  #       stages: [commit-msg]
+  # Commit linter - currently bugs out in WSL
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.17.0
+    hooks:
+      - id: gitlint
+        name: 'Git checks: Commit linter (conventional commit format)'
+        args: [--contrib=CT1, --msg-filename]
+        stages: [commit-msg]
 
     ## Generic checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
