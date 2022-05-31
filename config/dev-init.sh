@@ -15,3 +15,5 @@ pre-commit install \
 	--hook-type post-checkout \
 	--hook-type post-merge \
 	--hook-type post-rewrite
+
+git config --global core.editor "code --wait"
