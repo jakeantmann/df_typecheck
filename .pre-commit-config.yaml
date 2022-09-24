@@ -25,13 +25,12 @@ repos:
         stages: [post-commit, post-merge]
       - id: protect-first-parent
         name: 'Git checks: Protect first parent'
-  # Commit linter - currently bugs out in WSL
   - repo: https://github.com/jorisroovers/gitlint
     rev: v0.17.0
     hooks:
       - id: gitlint
         name: 'Git checks: Commit linter (conventional commit format)'
-        args: [--contrib=CT1, --ignore=general.ignore=body-is-missing, --msg-filename]
+        args: [--contrib=CT1, --ignore=body-is-missing, --msg-filename]
         stages: [commit-msg]
 
     ## Generic checks
@@ -78,11 +77,7 @@ repos:
         name: 'Generic fixes: Fix ligatures (non-ASCII joined letters)'
 
     ## Python-specific tools
-  - repo: https://github.com/regebro/pyroma
-    rev: '3.2'
-    hooks:
-      - id: pyroma
-        name: 'Python: Check package metadata with Pyroma'
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
@@ -95,6 +90,18 @@ repos:
       - id: name-tests-test
         name: 'Python: Check that tests are named correctly'
         args: [--django]
+  # TODO this validates pyproject. Need to check that metadata exists
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.10.1
+    hooks:
+      - id: validate-pyproject
+        name: 'Python: validate pyproject metadata'
+  - repo: https://github.com/HunterMcGushion/docstr_coverage
+    rev: v2.2.0 # most recent docstr-coverage release or commit sha
+    hooks:
+      - id: docstr-coverage
+        name: 'Python: Check docstring coverage'
+        args: [src, tests, --verbose, '2']
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.9.0
     hooks:
@@ -216,6 +223,7 @@ repos:
       - id: rstcheck
         name: 'Markup: RST linter'
     # Markdown
+    # TODO compare with https://github.com/igorshubovych/markdownlint-cli
   - repo: https://github.com/jackdewinter/pymarkdown
     rev: v0.9.6
     hooks:
@@ -236,13 +244,14 @@ repos:
     hooks:
       - id: check-toml
         name: 'Data serialisation: TOML linter'
-  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.3.0
-    hooks:
-      - id: pretty-format-toml
-        name: 'Data serialisation: TOML formatter'
-        args: [--autofix]
-    # YAML
+  # TODO ignore pyproject.toml
+  # - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  #   rev: v2.3.0
+  #   hooks:
+  #     - id: pretty-format-toml
+  #       name: 'Data serialisation: TOML formatter'
+  #       args: [--autofix]
+  # YAML
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.26.3
     hooks:
@@ -254,7 +263,7 @@ repos:
     hooks:
       - id: yamlfmt
         name: 'Data serialisation: YAML formatter'
-        args: [--mapping=2, --sequence=4, --offset=2, --width=150]
+        args: [--mapping, '2', --sequence, '4', --offset, '2', --width, '120']
     # JSON
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
