@@ -35,11 +35,11 @@ dependencies = ["pandas==1.3.2", "numpy==1.21.2", "loguru==0.5.3"]
 
 [project.optional-dependencies]
 tests = [
-  'coverage==6.3.2',
-  'mypy==0.950',
-  'mypy-extensions==0.4.3',
-  'pytest==7.1.2',
-  'pytest-cov==3.0.0'
+    'coverage==6.3.2',
+    'mypy==0.950',
+    'mypy-extensions==0.4.3',
+    'pytest==7.1.2',
+    'pytest-cov==3.0.0',
 ]
 
 # Borrowed from https://github.com/pawamoy/git-changelog/blob/master/pyproject.toml
@@ -70,16 +70,6 @@ namespaces = false
 
 [tool.nitpick]
 style = "https://raw.githubusercontent.com/wemake-services/wemake-python-styleguide/master/styles/nitpick-style.toml"
-
-[tool.poetry.dependencies]
-python = "^3.9"
-
-[tool.poetry.dependencies.pylint]
-version = "*"
-optional = true
-
-[tool.poetry.extras]
-lint = [ "pylint",]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
