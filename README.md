@@ -48,7 +48,7 @@ Typechecks for pandas dataframe columns using a single, central type dictionary
   - ~~Implement each group in hooks file (excluding those that need research)~~
   - ~~Add pre-commit setup sh/bat files~~
   - Add pre-commit to github actions (need to cache, and report when need to recache (new hook/possibly hook removed))
-- Code coverage (need to research - coveragepy?)
+- ~~Code coverage (need to research - coveragepy?)~~
 - ~~Commit standards ([Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/))~~
 - Changelog ([Conventional changelogs](https://github.com/conventional-changelog/conventional-changelog))
   - How fix old commit messages?
@@ -80,6 +80,7 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
 ### General tools to include
 
 - ~~vscode project settings~~
+- click (cmd line tool builder) (including badge?) (this should be how build scripts are accessed)
 - bumpversion (Version management)
 - Documentation
   - sphinx
@@ -87,7 +88,6 @@ For custom badges, use this ![github action](https://github.com/marketplace/acti
   - readTheDocs
   - Add to tox
   - Add documentation status badge [![https://readthedocs.org/projects/df_typecheck/badge/?version=latest](https://df_typecheck.readthedocs.io/en/latest/?badge=latest)](Documentation Status - readthedocs)
-- click (cmd line tool builder) (including badge?)
 - PyPi (automatically push latest code to PyPi, a standard Python public code library)
 - BitBucket Pipeline integration
 - More tools for testing
